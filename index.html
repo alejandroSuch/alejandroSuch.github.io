@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <title>Alejandro Such — Projects</title>
+  <meta name="description" content="Open source projects by Alejandro Such">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9fafb;
+      --surface: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #4f46e5;
+      --accent-hover: #4338ca;
+      --border: #e5e7eb;
+      --tag-bg: #f3f4f6;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --surface: #1f2937;
+        --text: #f3f4f6;
+        --muted: #9ca3af;
+        --accent: #818cf8;
+        --accent-hover: #6366f1;
+        --border: #374151;
+        --tag-bg: #374151;
+        --shadow: 0 1px 3px rgba(0,0,0,0.3);
+      }
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      flex: 1;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1rem;
+    }
+
+    header .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    header img {
+      width: 36px;
+      height: 36px;
+    }
+
+    header h1 {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+
+    .card-desc {
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--muted);
+      font-size: 0.625rem;
+      padding: 0.125rem 0.4rem;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 1rem 1rem;
+    }
+
+    footer .footer-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    footer svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      vertical-align: text-bottom;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="header-inner">
+        <img src="/logo.svg" alt="Alejandro Such">
+        <div>
+          <h1>Alejandro Such</h1>
+          <p>Open source projects &amp; experiments</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="grid" id="projects"></div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <a href="https://github.com/alejandroSuch" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          GitHub
+        </a>
+        <span>&middot;</span>
+        <a href="https://buymeacoffee.com/alejandrosuch" target="_blank" rel="noopener">
+          ☕ Support my work
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        name: 'PixelSafe',
+        desc: 'Optimize and resize images privately, 100% in your browser. No uploads, no servers.',
+        url: '/PixelSafe/',
+        repo: 'https://github.com/alejandroSuch/PixelSafe',
+        icon: '🛡️',
+        color: '#4f46e5',
+        tags: ['React', 'TypeScript', 'PWA', 'Privacy'],
+      },
+      {
+        name: 'JSONPretty',
+        desc: 'Format, validate, and convert JSON to YAML. Diff two JSONs side by side.',
+        url: '/JSONPretty/',
+        repo: 'https://github.com/alejandroSuch/JSONPretty',
+        icon: '{ }',
+        color: '#f59e0b',
+        tags: ['React', 'TypeScript', 'PWA', 'JSON', 'YAML'],
+      },
+      {
+        name: 'QRDrop',
+        desc: 'Generate QR codes for URLs, text, WiFi, and vCards. Download as PNG or SVG.',
+        url: '/QRDrop/',
+        repo: 'https://github.com/alejandroSuch/QRDrop',
+        icon: '📱',
+        color: '#7c3aed',
+        tags: ['React', 'TypeScript', 'PWA', 'QR Code'],
+      },
+      {
+        name: 'amem',
+        desc: 'Agentic Memory MCP server — BM25 search, inter-memory links, and enriched metadata for AI coding agents.',
+        url: 'https://github.com/alejandroSuch/amem',
+        repo: 'https://github.com/alejandroSuch/amem',
+        icon: '🧠',
+        color: '#8b5cf6',
+        tags: ['MCP', 'AI Agents', 'Memory', 'TypeScript'],
+      },
+      {
+        name: 'Watt Wait',
+        desc: 'Calculadora de tiempo de carga para coches eléctricos.',
+        url: '/watt-wait/',
+        repo: 'https://github.com/alejandroSuch/watt-wait',
+        icon: '⚡',
+        color: '#10b981',
+        tags: ['EV', 'Calculator', 'PWA'],
+      },
+      {
+        name: 'Dragon Eclipse Companion',
+        desc: 'Companion app for the "Dragon Eclipse" board game.',
+        url: '/dragon-eclipse-companion/',
+        repo: 'https://github.com/alejandroSuch/dragon-eclipse-companion',
+        icon: '🐉',
+        color: '#dc2626',
+        tags: ['Board Game', 'Companion App'],
+      },
+    ];
+
+    const grid = document.getElementById('projects');
+    grid.innerHTML = projects.map(p => `
+      <a class="card" href="${p.url}">
+        <div class="card-header">
+          <div class="card-icon" style="background:${p.color}15;color:${p.color}">${p.icon}</div>
+          <span class="card-title">${p.name}</span>
+        </div>
+        <p class="card-desc">${p.desc}</p>
+        <div class="tags">
+          ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+      </a>
+    `).join('');
+  </script>
+</body>
+</html>
