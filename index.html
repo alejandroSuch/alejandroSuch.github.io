@@ -214,8 +214,7 @@
     </header>
 
     <div class="container">
-      <h2>Projects</h2>
-      <div class="grid" id="projects"></div>
+      <div id="projects"></div>
     </div>
 
     <footer>
@@ -233,102 +232,118 @@
   </div>
 
   <script>
-    const projects = [
+    const sections = [
       {
-        name: 'amem',
-        desc: 'Agentic Memory MCP server. BM25 search, inter-memory links, and enriched metadata for AI coding agents.',
-        url: 'https://github.com/alejandroSuch/amem',
-        repo: 'https://github.com/alejandroSuch/amem',
-        icon: '🧠',
-        color: '#8b5cf6',
-        tags: ['MCP', 'AI Agents', 'Memory', 'TypeScript'],
+        title: 'Developer Tools',
+        projects: [
+          {
+            name: 'amem',
+            desc: 'Agentic Memory MCP server. BM25 search, inter-memory links, and enriched metadata for AI coding agents.',
+            url: 'https://github.com/alejandroSuch/amem',
+            icon: '🧠',
+            color: '#8b5cf6',
+            tags: ['MCP', 'AI Agents', 'Memory', 'TypeScript'],
+          },
+          {
+            name: 'JSONPretty',
+            desc: 'Format, validate, and convert JSON to YAML. Diff two JSONs side by side.',
+            url: '/JSONPretty/',
+            icon: '{ }',
+            color: '#f59e0b',
+            tags: ['React', 'TypeScript', 'PWA', 'JSON', 'YAML'],
+          },
+        ],
       },
       {
-        name: 'PiTravel',
-        desc: 'Turn a Raspberry Pi into a travel router with WiFi management, captive portal bypass, WireGuard VPN, and media server.',
-        url: 'https://github.com/alejandroSuch/travelpi',
-        repo: 'https://github.com/alejandroSuch/travelpi',
-        icon: '✈️',
-        color: '#3b82f6',
-        tags: ['Raspberry Pi', 'WireGuard', 'Flask', 'Networking'],
+        title: 'Privacy Utilities',
+        projects: [
+          {
+            name: 'PixelSafe',
+            desc: 'Optimize and resize images privately, 100% in your browser. No uploads, no servers.',
+            url: '/PixelSafe/',
+            icon: '🛡️',
+            color: '#4f46e5',
+            tags: ['React', 'TypeScript', 'PWA', 'Privacy'],
+          },
+          {
+            name: 'Guttr',
+            desc: 'Read CBR and CBZ comics privately, 100% in your browser. No uploads, no servers.',
+            url: '/guttr/',
+            icon: '💬',
+            color: '#0891b2',
+            tags: ['React', 'TypeScript', 'PWA', 'Privacy', 'Comics'],
+          },
+          {
+            name: 'QRDrop',
+            desc: 'Generate QR codes for URLs, text, WiFi, and vCards. Download as PNG or SVG.',
+            url: '/QRDrop/',
+            icon: '📱',
+            color: '#7c3aed',
+            tags: ['React', 'TypeScript', 'PWA', 'QR Code'],
+          },
+          {
+            name: 'Watt Wait',
+            desc: 'EV charging time calculator. Offline-first PWA.',
+            url: '/watt-wait/',
+            icon: '⚡',
+            color: '#10b981',
+            tags: ['EV', 'Calculator', 'PWA'],
+          },
+        ],
       },
       {
-        name: 'PixelSafe',
-        desc: 'Optimize and resize images privately, 100% in your browser. No uploads, no servers.',
-        url: '/PixelSafe/',
-        repo: 'https://github.com/alejandroSuch/PixelSafe',
-        icon: '🛡️',
-        color: '#4f46e5',
-        tags: ['React', 'TypeScript', 'PWA', 'Privacy'],
+        title: 'Hardware',
+        projects: [
+          {
+            name: 'PiTravel',
+            desc: 'Turn a Raspberry Pi into a travel router with WiFi management, captive portal bypass, WireGuard VPN, and media server.',
+            url: 'https://github.com/alejandroSuch/travelpi',
+            icon: '✈️',
+            color: '#3b82f6',
+            tags: ['Raspberry Pi', 'WireGuard', 'Flask', 'Networking'],
+          },
+        ],
       },
       {
-        name: 'Guttr',
-        desc: 'Read CBR and CBZ comics privately, 100% in your browser. No uploads, no servers.',
-        url: '/guttr/',
-        repo: 'https://github.com/alejandroSuch/guttr',
-        icon: '💬',
-        color: '#0891b2',
-        tags: ['React', 'TypeScript', 'PWA', 'Privacy', 'Comics'],
-      },
-      {
-        name: 'JSONPretty',
-        desc: 'Format, validate, and convert JSON to YAML. Diff two JSONs side by side.',
-        url: '/JSONPretty/',
-        repo: 'https://github.com/alejandroSuch/JSONPretty',
-        icon: '{ }',
-        color: '#f59e0b',
-        tags: ['React', 'TypeScript', 'PWA', 'JSON', 'YAML'],
-      },
-      {
-        name: 'QRDrop',
-        desc: 'Generate QR codes for URLs, text, WiFi, and vCards. Download as PNG or SVG.',
-        url: '/QRDrop/',
-        repo: 'https://github.com/alejandroSuch/QRDrop',
-        icon: '📱',
-        color: '#7c3aed',
-        tags: ['React', 'TypeScript', 'PWA', 'QR Code'],
-      },
-      {
-        name: 'Forge & Quill',
-        desc: 'Digital adventure sheet for the VulcanVerse gamebook saga.',
-        url: '/forge-and-quill/',
-        repo: 'https://github.com/alejandroSuch/forge-and-quill',
-        icon: '⚔️',
-        color: '#b45309',
-        tags: ['Gamebook', 'VulcanVerse', 'React', 'PWA'],
-      },
-      {
-        name: 'Watt Wait',
-        desc: 'EV charging time calculator. Offline-first PWA.',
-        url: '/watt-wait/',
-        repo: 'https://github.com/alejandroSuch/watt-wait',
-        icon: '⚡',
-        color: '#10b981',
-        tags: ['EV', 'Calculator', 'PWA'],
-      },
-      {
-        name: 'Dragon Eclipse Companion',
-        desc: 'Companion app for the "Dragon Eclipse" board game.',
-        url: '/dragon-eclipse-companion/',
-        repo: 'https://github.com/alejandroSuch/dragon-eclipse-companion',
-        icon: '🐉',
-        color: '#dc2626',
-        tags: ['Board Game', 'Companion App'],
+        title: 'Gaming & Hobby',
+        projects: [
+          {
+            name: 'Forge & Quill',
+            desc: 'Digital adventure sheet for the VulcanVerse gamebook saga.',
+            url: '/forge-and-quill/',
+            icon: '⚔️',
+            color: '#b45309',
+            tags: ['Gamebook', 'VulcanVerse', 'React', 'PWA'],
+          },
+          {
+            name: 'Dragon Eclipse Companion',
+            desc: 'Companion app for the "Dragon Eclipse" board game.',
+            url: '/dragon-eclipse-companion/',
+            icon: '🐉',
+            color: '#dc2626',
+            tags: ['Board Game', 'Companion App'],
+          },
+        ],
       },
     ];
 
-    const grid = document.getElementById('projects');
-    grid.innerHTML = projects.map(p => `
-      <a class="card" href="${p.url}">
-        <div class="card-header">
-          <div class="card-icon" style="background:${p.color}15;color:${p.color}">${p.icon}</div>
-          <span class="card-title">${p.name}</span>
-        </div>
-        <p class="card-desc">${p.desc}</p>
-        <div class="tags">
-          ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
-        </div>
-      </a>
+    const container = document.getElementById('projects');
+    container.innerHTML = sections.map(s => `
+      <h2>${s.title}</h2>
+      <div class="grid" style="margin-bottom: 2rem;">
+        ${s.projects.map(p => `
+          <a class="card" href="${p.url}">
+            <div class="card-header">
+              <div class="card-icon" style="background:${p.color}15;color:${p.color}">${p.icon}</div>
+              <span class="card-title">${p.name}</span>
+            </div>
+            <p class="card-desc">${p.desc}</p>
+            <div class="tags">
+              ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+          </a>
+        `).join('')}
+      </div>
     `).join('');
   </script>
 </body>
